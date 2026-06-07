@@ -20,7 +20,7 @@ exports.getUserPosts = async (req, res) => {
 
 exports.createPost = async (req, res) => {
   try {
-    const post = await Post.create({ content: req.body.content, author: req.user.id })
+    const post = await Post.create({ title: req.body.title, content: req.body.content, author: req.user.id, planId: req.body.planId })
     await post.populate('author', 'username')
     res.status(201).json(post)
   } catch {

@@ -4,16 +4,16 @@ import { useAuth } from '../context/useAuth'
 import api from '../services/api'
 
 export default function ResultsPage() {
-  const [places, setPlaces]   = useState([])
+  const [places, setPlaces] = useState([])
   const [loading, setLoading] = useState(true)
-  const [sortBy, setSortBy]   = useState('Popular')
+  const [sortBy, setSortBy] = useState('Popular')
   const [filters, setFilters] = useState({ type: '', minRating: 0, maxBudget: 500 })
-  const [searchParams]        = useSearchParams()
-  const { user }              = useAuth()
-  const navigate              = useNavigate()
+  const [searchParams] = useSearchParams()
+  const { user } = useAuth()
+  const navigate = useNavigate()
 
-  const city   = searchParams.get('city')   || 'Tunis'
-  const type   = searchParams.get('type')   || 'all'
+  const city = searchParams.get('city') || 'Tunis'
+  const type = searchParams.get('type') || 'all'
   const budget = searchParams.get('budget') || 500
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function ResultsPage() {
     .filter(p => p.price <= filters.maxBudget)
     .sort((a, b) =>
       sortBy === 'Popular' ? b.rating - a.rating :
-      sortBy === 'Price'   ? a.price - b.price : 0
+        sortBy === 'Price' ? a.price - b.price : 0
     )
 
   return (
@@ -72,7 +72,7 @@ export default function ResultsPage() {
                 <input
                   type="checkbox"
                   checked={filters.type === t}
-                  onChange={() => setFilters({...filters, type: filters.type === t ? '' : t})}
+                  onChange={() => setFilters({ ...filters, type: filters.type === t ? '' : t })}
                   style={{ accentColor: '#2d6a4f' }}
                 />
                 <span style={s.checkText}>
@@ -90,7 +90,7 @@ export default function ResultsPage() {
               <input
                 type="range" min="0" max="500" step="10"
                 value={filters.maxBudget}
-                onChange={e => setFilters({...filters, maxBudget: Number(e.target.value)})}
+                onChange={e => setFilters({ ...filters, maxBudget: Number(e.target.value) })}
                 style={{ flex: 1, accentColor: '#2d6a4f' }}
               />
               <span style={s.budgetText}>{filters.maxBudget} DT</span>
@@ -100,17 +100,17 @@ export default function ResultsPage() {
           <div style={s.filterSection}>
             <h4 style={s.filterLabel}>Rating minimum</h4>
             {[
-              { val: 0,   label: 'All' },
-              { val: 3,   label: '⭐⭐⭐ & up' },
+              { val: 0, label: 'All' },
+              { val: 3, label: '⭐⭐⭐ & up' },
               { val: 3.5, label: '⭐⭐⭐½ & up' },
-              { val: 4,   label: '⭐⭐⭐⭐ & up' },
+              { val: 4, label: '⭐⭐⭐⭐ & up' },
               { val: 4.5, label: '⭐⭐⭐⭐½ & up' },
             ].map(r => (
               <label key={r.val} style={s.checkLabel}>
                 <input
                   type="radio"
                   checked={filters.minRating === r.val}
-                  onChange={() => setFilters({...filters, minRating: r.val})}
+                  onChange={() => setFilters({ ...filters, minRating: r.val })}
                   style={{ accentColor: '#2d6a4f' }}
                 />
                 <span style={s.checkText}>{r.label}</span>
@@ -150,11 +150,11 @@ export default function ResultsPage() {
           </div>
 
           {loading ? (
-            [1,2,3,4].map(i => <div key={i} style={s.skeleton} />)
+            [1, 2, 3, 4].map(i => <div key={i} style={s.skeleton} />)
           ) : filtered.length === 0 ? (
             <div style={s.empty}>
-              <p style={{fontSize:'3rem'}}>🔍</p>
-              <p style={{color:'#6c757d', marginTop:'1rem'}}>Aucune place trouvée</p>
+              <p style={{ fontSize: '3rem' }}>🔍</p>
+              <p style={{ color: '#6c757d', marginTop: '1rem' }}>Aucune place trouvée</p>
               <button
                 style={s.resetBtn}
                 onClick={() => setFilters({ type: '', minRating: 0, maxBudget: 500 })}
@@ -217,19 +217,19 @@ export default function ResultsPage() {
 }
 
 const categoryBg = {
-  'restaurant':  '#e8f5e9',
-  'café':        '#fff8e1',
-  'activité':    '#e3f2fd',
+  'restaurant': '#e8f5e9',
+  'café': '#fff8e1',
+  'activité': '#e3f2fd',
   'hébergement': '#fce4ec',
-  'transport':   '#ede7f6',
+  'transport': '#ede7f6',
 }
 
 const categoryTxt = {
-  'restaurant':  '#2d6a4f',
-  'café':        '#f59e0b',
-  'activité':    '#1565c0',
+  'restaurant': '#2d6a4f',
+  'café': '#f59e0b',
+  'activité': '#1565c0',
   'hébergement': '#c2185b',
-  'transport':   '#6a1b9a',
+  'transport': '#6a1b9a',
 }
 
 const s = {

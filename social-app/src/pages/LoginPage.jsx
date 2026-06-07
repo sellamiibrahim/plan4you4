@@ -5,11 +5,11 @@ import api from '../services/api'
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({ email: '', password: '' })
-  const [error, setError]       = useState('')
-  const [loading, setLoading]   = useState(false)
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
   const [showPass, setShowPass] = useState(false)
-  const { login }               = useAuth()
-  const navigate                = useNavigate()
+  const { login } = useAuth()
+  const navigate = useNavigate()
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
 

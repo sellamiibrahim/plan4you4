@@ -176,6 +176,11 @@ export default function PlanPage() {
   const handleShare = async (id) => {
     try {
       await api.put(`/plans/${id}/share`)
+      await api.post('/posts', {
+        title: `Plan pour ${plan.city}`,
+        content: `Découvrez mon nouveau plan de voyage pour ${plan.city} avec un budget de ${plan.budget} DT.`,
+        planId: id
+      })
       fetchMyPlans()
       if (plan?._id === id) setPlan({ ...plan, isShared: true })
     } catch (err) { console.error(err) }

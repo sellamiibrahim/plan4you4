@@ -202,10 +202,15 @@ export default function HomePage() {
                   </div>
                 </div>
                 <p style={s.postContent}>{post.content}</p>
-                <div style={s.postActions}>
-                  <span style={s.postAction}>{post.likes?.length || 0} likes</span>
-                  <span style={s.postAction}>{post.comments?.length || 0} commentaires</span>
-                </div>
+{post.planId && (
+  <button style={s.showPlanBtn} onClick={() => navigate(`/plan/${post.planId}`)}>
+    Afficher le plan
+  </button>
+)}
+<div style={s.postActions}>
+  <span style={s.postAction}>{post.likes?.length || 0} likes</span>
+  <span style={s.postAction}>{post.comments?.length || 0} commentaires</span>
+</div>
               </article>
             ))
           )}
@@ -375,6 +380,7 @@ const s = {
   postDate: { color: '#6c757d', fontSize: '0.8rem', margin: '0.2rem 0 0' },
   postContent: { color: '#1a1a2e', fontSize: '0.98rem', lineHeight: '1.7', margin: '0 0 1rem' },
   postActions: { display: 'flex', gap: '1rem', borderTop: '1px solid #f0f0f0', paddingTop: '0.75rem' },
+  showPlanBtn: { background: '#2d6a4f', color: '#fff', border: 'none', borderRadius: '10px', padding: '0.5rem 1rem', cursor: 'pointer', fontSize: '0.85rem', fontWeight: '600' },
   postAction: { color: '#6c757d', fontSize: '0.85rem', fontWeight: '500' },
   postSkeleton: {
     height: '150px',

@@ -16,7 +16,7 @@ import CreatePostPage from './pages/CreatePostPage'
 
 function PrivateRoute({ children }) {
   const { user, loading } = useAuth()
-  if (loading) return <div style={{color: 'var(--text)', padding: '2rem'}}>Loading...</div>
+  if (loading) return <div style={{ color: 'var(--text)', padding: '2rem' }}>Loading...</div>
   return user ? children : <Navigate to="/login" />
 }
 
@@ -25,9 +25,9 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/login"       element={<LoginPage />} />
-          <Route path="/register"    element={<RegisterPage />} />
-          <Route path="/"            element={<PrivateRoute><HomePage /></PrivateRoute>} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/" element={<PrivateRoute><HomePage /></PrivateRoute>} />
           <Route path="/profile/:id" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
           <Route path="/plan" element={<PrivateRoute><PlanPage /></PrivateRoute>} />
           <Route path="/results" element={<PrivateRoute><ResultsPage /></PrivateRoute>} />
