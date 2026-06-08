@@ -32,9 +32,9 @@ exports.register = async (req, res) => {
       followers: [],
       following: [],
       preferences: {
-        wilaya:      preferences?.wilaya || '',
-        interests:   interests,
-        budget:      budget,
+        wilaya: preferences?.wilaya || '',
+        interests: interests,
+        budget: budget,
         travelStyle: preferences?.travelStyle || '',
       }
     })

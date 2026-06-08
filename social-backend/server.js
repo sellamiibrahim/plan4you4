@@ -1,6 +1,6 @@
-const express      = require('express')
-const mongoose     = require('mongoose')
-const cors         = require('cors')
+const express = require('express')
+const mongoose = require('mongoose')
+const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const path = require('path')
 require('dotenv').config({ path: path.join(__dirname, '.env') })
@@ -21,7 +21,7 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieParser())
 
-app.use('/api/auth',  authRoutes)
+app.use('/api/auth', authRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/posts', postRoutes)
 app.use('/api/plans', planRoutes)

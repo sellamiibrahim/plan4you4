@@ -4,12 +4,12 @@ import { useAuth } from '../context/useAuth'
 import api from '../services/api'
 
 export default function HomePage() {
-  const [search, setSearch]   = useState({ city: 'Tunis', type: 'Café', budget: '' })
+  const [search, setSearch] = useState({ city: 'Tunis', type: 'Café', budget: '' })
   const [popular, setPopular] = useState([])
-  const [posts, setPosts]     = useState([])
+  const [posts, setPosts] = useState([])
   const [postsLoading, setPostsLoading] = useState(true)
-  const { user, logout }      = useAuth()
-  const navigate              = useNavigate()
+  const { user, logout } = useAuth()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchPopular = async () => {
@@ -82,9 +82,9 @@ export default function HomePage() {
               <select
                 style={s.searchSelect}
                 value={search.city}
-                onChange={e => setSearch({...search, city: e.target.value})}
+                onChange={e => setSearch({ ...search, city: e.target.value })}
               >
-                {['Tunis','Sousse','Sfax','Djerba','Hammamet','Monastir','Nabeul','Bizerte','Kairouan','Gabès','Gafsa','Tozeur','Tataouine','Médenine','Béja','Jendouba','Le Kef','Siliana','Kasserine','Sidi Bouzid','Mahdia','Zaghouan','Ariana','Ben Arous'].map(c => (
+                {['Tunis', 'Sousse', 'Sfax', 'Djerba', 'Hammamet', 'Monastir', 'Nabeul', 'Bizerte', 'Kairouan', 'Gabès', 'Gafsa', 'Tozeur', 'Tataouine', 'Médenine', 'Béja', 'Jendouba', 'Le Kef', 'Siliana', 'Kasserine', 'Sidi Bouzid', 'Mahdia', 'Zaghouan', 'Ariana', 'Ben Arous'].map(c => (
                   <option key={c}>{c}</option>
                 ))}
               </select>
@@ -95,9 +95,9 @@ export default function HomePage() {
               <select
                 style={s.searchSelect}
                 value={search.type}
-                onChange={e => setSearch({...search, type: e.target.value})}
+                onChange={e => setSearch({ ...search, type: e.target.value })}
               >
-                {['Café','Restaurant','Activité','Hébergement','Transport','Tout'].map(t => (
+                {['Café', 'Restaurant', 'Activité', 'Hébergement', 'Transport', 'Tout'].map(t => (
                   <option key={t}>{t}</option>
                 ))}
               </select>
@@ -110,7 +110,7 @@ export default function HomePage() {
                 type="number"
                 placeholder="Budget (DT)"
                 value={search.budget}
-                onChange={e => setSearch({...search, budget: e.target.value})}
+                onChange={e => setSearch({ ...search, budget: e.target.value })}
               />
             </div>
             <button style={s.searchBtn} type="submit">Search</button>
@@ -129,7 +129,7 @@ export default function HomePage() {
 
         <div style={s.placesGrid}>
           {popular.length === 0 ? (
-            [1,2,3,4].map(i => <div key={i} style={s.skeleton} />)
+            [1, 2, 3, 4].map(i => <div key={i} style={s.skeleton} />)
           ) : (
             popular.map((place, i) => (
               <div key={i} style={s.placeCard} onClick={() => navigate(`/place/${place._id}`)}>
@@ -140,7 +140,7 @@ export default function HomePage() {
                     style={s.placeImg}
                     onError={e => { e.target.src = `https://source.unsplash.com/300x200/?tunisia,cafe` }}
                   />
-                  <span style={{...s.categoryBadge, background: getCategoryColor(place.category)}}>
+                  <span style={{ ...s.categoryBadge, background: getCategoryColor(place.category) }}>
                     {place.category}
                   </span>
                 </div>
@@ -169,7 +169,7 @@ export default function HomePage() {
 
         <div style={s.postsList}>
           {postsLoading ? (
-            [1,2,3].map(i => <div key={i} style={s.postSkeleton} />)
+            [1, 2, 3].map(i => <div key={i} style={s.postSkeleton} />)
           ) : posts.length === 0 ? (
             <div style={s.emptyPosts}>
               <p style={s.emptyTitle}>Aucun post pour l'instant</p>
@@ -202,15 +202,15 @@ export default function HomePage() {
                   </div>
                 </div>
                 <p style={s.postContent}>{post.content}</p>
-{post.planId && (
-  <button style={s.showPlanBtn} onClick={() => navigate(`/plan/${post.planId}`)}>
-    Afficher le plan
-  </button>
-)}
-<div style={s.postActions}>
-  <span style={s.postAction}>{post.likes?.length || 0} likes</span>
-  <span style={s.postAction}>{post.comments?.length || 0} commentaires</span>
-</div>
+                {post.planId && (
+                  <button style={s.showPlanBtn} onClick={() => navigate(`/plan/${post.planId}`)}>
+                    Afficher le plan
+                  </button>
+                )}
+                <div style={s.postActions}>
+                  <span style={s.postAction}>{post.likes?.length || 0} likes</span>
+                  <span style={s.postAction}>{post.comments?.length || 0} commentaires</span>
+                </div>
               </article>
             ))
           )}
@@ -231,11 +231,11 @@ export default function HomePage() {
 
 function getCategoryColor(cat) {
   const colors = {
-    'restaurant':  '#e8f5e9',
-    'café':        '#fff8e1',
-    'activité':    '#e3f2fd',
+    'restaurant': '#e8f5e9',
+    'café': '#fff8e1',
+    'activité': '#e3f2fd',
     'hébergement': '#fce4ec',
-    'transport':   '#ede7f6',
+    'transport': '#ede7f6',
   }
   return colors[cat] || '#f5f5f5'
 }

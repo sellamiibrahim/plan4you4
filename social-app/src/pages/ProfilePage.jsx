@@ -4,14 +4,14 @@ import { useAuth } from '../context/useAuth'
 import api from '../services/api'
 
 export default function ProfilePage() {
-  const [profile, setProfile]   = useState(null)
-  const [posts, setPosts]       = useState([])
-  const [loading, setLoading]   = useState(true)
+  const [profile, setProfile] = useState(null)
+  const [posts, setPosts] = useState([])
+  const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState('posts')
-  const { user, logout }        = useAuth()
-  const { id }                  = useParams()
-  const navigate                = useNavigate()
-  const isOwner                 = user?._id === id
+  const { user, logout } = useAuth()
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const isOwner = user?._id === id
 
   const fetchProfile = useCallback(async () => {
     try {
