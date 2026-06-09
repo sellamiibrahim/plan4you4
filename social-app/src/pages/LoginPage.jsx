@@ -21,6 +21,10 @@ export default function LoginPage() {
       const res = await api.post('/auth/login', formData)
       localStorage.setItem('token', res.data.token)
       login(res.data.user)
+      if (res.data.user?.isAdmin || res.data.user?.role === 'admin') {
+        navigate('/admin')
+        return
+      }
       const params = new URLSearchParams(window.location.search)
       if (params.get('onboarding') === 'true') {
         navigate('/onboarding')

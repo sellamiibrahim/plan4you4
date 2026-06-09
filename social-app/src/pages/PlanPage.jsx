@@ -103,7 +103,6 @@ export default function PlanPage() {
     }))
 
     // try to pick diverse places across categories, prefer higher rating
-    const categories = [...new Set(candidates.map(c => c.category))]
     const itemsPerDay = Math.max(1, Math.floor((candidates.length || 1) / Math.max(1, days)))
 
     // sort by rating desc then price asc
@@ -395,25 +394,7 @@ export default function PlanPage() {
               </div>
             )}
 
-            {/* Photos */}
-            {plan.activities?.length > 0 && (
-              <div style={{ marginTop: '2rem' }}>
-                <h3 style={s.sectionTitle}>📸 Photos</h3>
-                <div style={s.photosGrid}>
-                  {plan.activities.slice(0, 6).map((act, i) => (
-                    <div key={i} style={s.photoCard}>
-                      <img
-                        src={act.image || `https://source.unsplash.com/300x200/?${encodeURIComponent(act.name + ' Tunisia')}`}
-                        alt={act.name}
-                        style={s.photo}
-                        onError={e => { e.target.src = `https://source.unsplash.com/300x200/?tunisia` }}
-                      />
-                      <div style={s.photoLabel}>{act.name}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+            
           </div>
         )}
 

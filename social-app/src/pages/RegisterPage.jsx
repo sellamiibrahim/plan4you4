@@ -41,7 +41,7 @@ export default function RegisterPage() {
         login(res.data.user)
         navigate('/onboarding')
         return
-      } catch (err) {
+      } catch {
         // If auto-login fails, fallback to login page with onboarding flag
         navigate('/login?onboarding=true')
         return

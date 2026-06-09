@@ -52,6 +52,11 @@ export default function HomePage() {
         <div style={s.navActions}>
           {user ? (
             <>
+              {(user.isAdmin || user.role === 'admin') && (
+                <button style={s.adminBtn} onClick={() => navigate('/admin')}>
+                  Admin
+                </button>
+              )}
               <button style={s.navLinkBtn} onClick={() => navigate(`/profile/${user._id}`)}>
                 {user.username}
               </button>
@@ -267,6 +272,11 @@ const s = {
     background: '#2d6a4f', color: '#fff', border: 'none',
     borderRadius: '8px', padding: '0.5rem 1.25rem',
     cursor: 'pointer', fontSize: '0.9rem', fontWeight: '600',
+  },
+  adminBtn: {
+    background: '#18212f', color: '#fff', border: 'none',
+    borderRadius: '8px', padding: '0.5rem 1rem',
+    cursor: 'pointer', fontSize: '0.9rem', fontWeight: '700',
   },
   hero: {
     position: 'relative', height: '420px',

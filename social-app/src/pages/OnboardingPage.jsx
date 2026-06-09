@@ -66,7 +66,7 @@ export default function OnboardingPage() {
         travelStyle: data.travelStyle,
       }
       console.log('payload:', payload)
-      const res = await api.put(`/users/${user?._id}/preferences`, payload)
+      const res = await api.patch(`/users/${user?._id}/preferences`, payload)
       console.log('response:', res.data)
       navigate('/')
     } catch (err) {
